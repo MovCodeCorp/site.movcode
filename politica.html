@@ -1,95 +1,1745 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Política de Privacidade | MovCode</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Política de Privacidade - MovCode</title>
     <style>
-        body {
+/* =========================================
+           VARIÁVEIS E RESET
+        ========================================= */
+        :root {
+            --primaria: #3703B8;
+            --destaque: #FE6603;
+            --branco: #FFFFFF;
+            --escuro: #0D0524;
+            --cinza-claro: #F4F5F7;
+            --terminal-bg: #0D1117;
+            --terminal-green: #39d353;
+            --terminal-blue: #79c0ff;
+            --terminal-orange: #ffa657;
+            --terminal-purple: #d2a8ff;
+            --terminal-comment: #8b949e;
+        }
+
+        html { scroll-behavior: smooth; }
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { color: var(--escuro); background-color: var(--branco); line-height: 1.6; overflow-x: hidden }
+
+        section { scroll-margin-top: 70px; }
+        #inicio { scroll-margin-top: 0; }
+
+        .container { width: 90%; max-width: 1100px; margin: 0 auto; }
+
+
+/* =========================================
+   HEADER
+========================================= */
+        header {
+            background-color: var(--branco);
+            padding: 15px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.5s ease;
+        }
+        header.scrolled { box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        header .container { display: flex; justify-content: space-between; align-items: center; }
+
+        .logo { font-size: 28px; font-weight: 700; color: var(--primaria); text-decoration: none; z-index: 101; }
+        .logo span { color: var(--destaque); }
+
+        nav ul { display: flex; list-style: none; gap: 30px; }
+        nav ul li a { text-decoration: none; color: var(--escuro); font-weight: 500; font-size: 15px; transition: 0.3s; }
+        nav ul li a:hover { color: var(--destaque); }
+
+        /* =========================================
+           TOP WRAPPER
+        ========================================= */
+        .top-wrapper {
+            background: radial-gradient(circle at 20% 30%, #4a09f0 0%, var(--primaria) 50%, #20026b 100%);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .top-wrapper::after {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            background: var(--destaque);
+            filter: blur(150px);
+            opacity: 0.2;
+            top: -100px; right: -100px;
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* =========================================
+           WHATSAPP
+        ========================================= */
+        .whatsapp-btn {
+            position: fixed; bottom: 30px; right: 30px; background-color: #25D366;
+            width: 60px; height: 60px; border-radius: 50%; display: flex; justify-content: center;
+            align-items: center; box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            z-index: 1000; text-decoration: none; animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%   { box-shadow: 0 0 0 0 rgba(37,211,102,0.7); }
+            70%  { box-shadow: 0 0 0 15px rgba(37,211,102,0); }
+            100% { box-shadow: 0 0 0 0 rgba(37,211,102,0); }
+        }
+
+
+
+        /* =========================================
+        FOOTER COMPACTO & MINIMALISTA
+        ========================================= */
+        .footer-compacto {
+            background-color: #050112;
+            padding: 40px 0 20px; /* Bem mais curto que os anteriores */
+            color: var(--branco);
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .logo-menor {
+            display: inline-flex;
+            align-items: flex-end; /* Mantém o alinhamento pela base */
+            gap: 5px; /* Agora só afasta a imagem do texto */
+            text-decoration: none;
             font-family: 'Poppins', sans-serif;
-            background-color: #0f0f0f;
-            color: #ccc;
-            line-height: 1.6;
+            font-weight: 700;
+            font-size: 25px; 
+            color: #FFFFFF;
+            line-height: 1;
+        }
+
+        /* Ajuste fino na imagem para não ficar "caída" */
+        .logo-menor img {
+            height: 30px;
+            width: auto;
+            display: block;
+            margin-bottom: 3px; /* Sobe a imagem levemente para alinhar com a base das letras */
+        }
+
+        /* Garante que o texto e o ponto fiquem grudados */
+        .logo-texto {
+            display: inline-block;
+            white-space: nowrap; /* Impede que o ponto pule de linha */
+        }
+
+        .ponto {
+            color: var(--destaque);
+        }
+
+        /* Pequeno ajuste no texto de apoio logo abaixo */
+        .footer-identidade p {
+            font-size: 12px;
+            color: #615a7a;
+            margin-top: 5px;
+            font-weight: 400;
+        }
+
+        /* Lado direito: links rápidos */
+        .footer-contato {
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .email-link {
+            color: var(--branco);
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        .email-link:hover { color: var(--destaque); }
+
+        .social-mini {
+            font-size: 12px;
+            color: #615a7a;
+        }
+        .social-mini a {
+            color: #615a7a;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .social-mini a:hover { color: var(--branco); }
+        .social-mini .sep { margin: 0 5px; opacity: 0.3; }
+
+        /* Linha de copyright final */
+        .footer-copy {
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.03);
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: #413b58;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .topo-link {
+            color: #413b58;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .topo-link:hover { color: var(--destaque); }
+
+        /* Responsivo para telas pequenas */
+        @media (max-width: 768px) {
+            .footer-top {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            .footer-contato {
+                text-align: center;
+            }
+            .footer-copy {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+        }
+
+
+        .btn-destaque {
+            background-color: var(--destaque); color: var(--branco); padding: 15px 32px;
+            text-decoration: none; border-radius: 8px; font-weight: 600; transition: 0.3s;
+            display: inline-block; border: none; cursor: pointer;
+            box-shadow: 0 10px 20px rgba(254,102,3,0.3);
+        }
+        .btn-destaque:hover { transform: translateY(-3px); box-shadow: 0 10px 20px rgba(254,102,3,0.5); }
+        .btn-destaque:disabled { opacity: 0.7; cursor: not-allowed; transform: none; box-shadow: none; }
+
+        /* Tags de stack */
+        .stack-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 32px; }
+        .stack-tag {
+            background: #F4F0FF;
+            color: var(--primaria);
+            border: 1px solid rgba(55,3,184,0.15);
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .btn-outline {
+            background-color: transparent; color: var(--primaria); border: 2px solid var(--primaria);
+            padding: 12px 28px; border-radius: 8px; text-decoration: none; font-weight: 600;
+            transition: 0.3s; display: inline-block;
+        }
+        .btn-outline:hover { background-color: var(--primaria); color: var(--branco); }
+
+        h2.section-title { color: var(--escuro); font-size: 36px; margin-bottom: 50px; }
+
+        /* Feedback do formulário */
+        .form-feedback {
+            display: none;
+            padding: 14px 18px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-top: 8px;
+        }
+        .form-feedback.success { background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
+        .form-feedback.error   { background: #fee2e2; color: #991b1b; border: 1px solid #fecaca; }
+
+        /* =========================================
+           ANIMAÇÕES DE SCROLL
+        ========================================= */
+        .escondido {
+            opacity: 0; transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, transform;
+        }
+        .aparecer { opacity: 1; transform: translateY(0); }
+
+/* =========================================
+   HELPERS
+========================================= */
+.section-title--center {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title--no-margin {
+    margin-bottom: 0;
+}
+
+.whatsapp-btn__icon {
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+}
+
+
+
+
+/* =========================================
+   HERO REFORMULADA (IMAGEM NO LUGAR DO DASHBOARD)
+========================================= */
+.hero { padding: 60px 0 100px; color: var(--branco); position: relative; z-index: 1; }
+.hero .container { display: flex; align-items: center; justify-content: space-between; gap: 60px; }
+
+.hero-text { flex: 1.1; max-width: 650px; }
+
+/* Título muito maior e mais imponente */
+.hero h1 { 
+    font-size: clamp(42px, 5vw, 56px); 
+    line-height: 1.15; 
+    margin-bottom: 25px; 
+    font-weight: 700; 
+    letter-spacing: -1.5px; 
+}
+.hero h1 .highlight { color: #a78bfa; }
+
+.hero p { font-size: 17px; color: #b8aedf; margin-bottom: 40px; line-height: 1.6; }
+
+.hero-btns { display: flex; gap: 15px; margin-bottom: 45px; }
+
+.btn-outline-hero {
+    padding: 15px 30px;
+    border-radius: 8px;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--branco);
+    text-decoration: none;
+    font-weight: 600;
+    transition: 0.3s;
+}
+.btn-outline-hero:hover { background: rgba(255,255,255,0.1); border-color: var(--branco); }
+
+.hero-benefits { display: flex; flex-wrap: wrap; gap: 24px; }
+.benefit-item { display: flex; gap: 12px; align-items: center; }
+.benefit-icon { color: #a78bfa; opacity: 0.8; }
+.benefit-icon svg { width: 22px; height: 22px; }
+.benefit-txt strong { display: block; font-size: 13px; color: var(--branco); }
+.benefit-txt span { font-size: 11px; color: #837da1; }
+
+/* --- LADO DIREITO: ÓRBITA TECH --- */
+.hero-visual { 
+    flex: 1; 
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.tech-orbit {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Anéis Animados (MANTIDOS) */
+.orbit-ring {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.ring-1 {
+    width: 380px; height: 380px;
+    border-top-color: var(--primaria);
+    animation: spin 15s linear infinite;
+}
+
+.ring-2 {
+    width: 280px; height: 280px;
+    border-right-color: var(--destaque);
+    border-bottom-color: rgba(254, 102, 3, 0.2);
+    animation: spinReverse 10s linear infinite;
+}
+
+.ring-3 {
+    width: 180px; height: 180px;
+    border: 1px dashed rgba(167, 139, 250, 0.3);
+    animation: spin 20s linear infinite;
+}
+
+/* NOVO: Núcleo Central */
+.orbit-core {
+    position: relative;
+    width: 70px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+}
+
+/* Esfera física do núcleo */
+.core-solid {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--primaria) 0%, var(--destaque) 100%);
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(254, 102, 3, 0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--branco);
+    position: relative;
+    z-index: 2;
+}
+
+.core-solid svg {
+    width: 28px;
+    height: 28px;
+}
+
+/* Onda de energia que pulsa do centro para fora */
+.core-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--destaque);
+    animation: pulseEnergy 2.5s infinite ease-out;
+    z-index: 1;
+}
+
+/* --- ANIMAÇÕES --- */
+@keyframes spin { 
+    100% { transform: rotate(360deg); } 
+}
+
+@keyframes spinReverse { 
+    100% { transform: rotate(-360deg); } 
+}
+
+@keyframes pulseEnergy {
+    0% { transform: scale(1); opacity: 0.6; }
+    100% { transform: scale(2.5); opacity: 0; }
+}
+
+/* Responsivo */
+@media (max-width: 1024px) {
+    .hero .container { flex-direction: column; text-align: center; gap: 50px; }
+    .hero-text { max-width: 100%; display: flex; flex-direction: column; align-items: center; }
+    .hero-btns { justify-content: center; }
+    .hero-benefits { justify-content: center; }
+    .hero-visual { justify-content: center; width: 100%; }
+    .tech-orbit { width: 300px; height: 300px; margin-top: 20px; }
+    .ring-1 { width: 300px; height: 300px; }
+    .ring-2 { width: 220px; height: 220px; }
+    .ring-3 { width: 140px; height: 140px; }
+    .orbit-core { width: 60px; height: 60px; }
+}
+
+
+        /* =========================================
+           MIDDLE WRAPPER
+        ========================================= */
+        .middle-wrapper {
+            background: linear-gradient(180deg, #E6D9FF 0%, #FFFFFF 50%, #FFE5D4 100%);
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+            padding-top: 110px;
+        }
+
+
+
+
+        /* =========================================
+   SOBRE A MOVII (FOCO NOS IDEAIS)
+========================================= */
+.sobre-ideais {
+    padding: 100px 0;
+    background-color: #FAFAFC; /* Um cinza super claro pra destacar do branco puro */
+    border-top: 1px solid rgba(0,0,0,0.03);
+    border-bottom: 1px solid rgba(0,0,0,0.03);
+}
+
+.ideais-wrapper {
+    max-width: 900px;
+    margin: 0 auto;
+}
+
+.ideais-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.ideais-eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--primaria);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 16px;
+}
+
+.ideais-header h2 {
+    font-size: clamp(32px, 5vw, 46px);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--escuro);
+    letter-spacing: -1px;
+}
+
+.ideais-content {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.ideais-lead {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--primaria);
+    margin-bottom: 24px;
+    line-height: 1.4;
+}
+
+.ideais-content p {
+    font-size: 16px;
+    color: #615a7a;
+    line-height: 1.7;
+    margin-bottom: 16px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.ideais-content strong {
+    color: var(--escuro);
+    font-weight: 600;
+}
+
+/* Grid de Ideais */
+.ideais-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.ideal-card {
+    background: var(--branco);
+    border: 1px solid rgba(0,0,0,0.04);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.01);
+}
+
+.ideal-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(55,3,184,0.05);
+    border-color: rgba(55,3,184,0.1);
+}
+
+.ideal-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(167,139,250,0.1);
+    color: #A78BFA;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    transition: 0.3s;
+}
+
+.ideal-card:hover .ideal-icon {
+    background: #A78BFA;
+    color: var(--branco);
+    transform: scale(1.1) rotate(-5deg);
+}
+
+.ideal-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.ideal-card h4 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--escuro);
+    margin-bottom: 12px;
+}
+
+.ideal-card p {
+    font-size: 13px;
+    color: #837da1;
+    line-height: 1.5;
+    margin: 0;
+}
+
+/* Responsivo */
+@media (max-width: 900px) {
+    .ideais-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .ideais-grid {
+        grid-template-columns: 1fr;
+    }
+    .ideais-lead {
+        font-size: 18px;
+    }
+}
+
+
+
+
+        /* =========================================
+        A MOVII É PARA VOCÊ... (WHITE COMPACTO)
+        ========================================= */
+        .bento-white {
+            background-color: var(--branco);
+            padding: 50px 0; 
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .bento-header-compacto {
+            margin-bottom: 30px;
+        }
+
+        .bento-header-compacto h2 {
+            font-size: 32px;
+            letter-spacing: -1px;
+            color: var(--escuro);
+        }
+
+        .bento-eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primaria);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .bento-grid-white {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px; /* Menos espaço entre os cards */
+        }
+
+        .bento-card-white {
+            background: #FAFAFC;
+            border: 1px solid rgba(0,0,0,0.05);
+            border-radius: 16px;
+            padding: 25px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+        }
+
+        .bento-card-white:hover {
+            border-color: var(--primaria);
+            background: var(--branco);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.03);
+        }
+
+        .card-principal {
+            grid-column: span 2;
+            flex-direction: row;
+            align-items: center;
+            gap: 30px;
+            background: #F4F0FF; /* Um toque de roxo bem leve para destacar */
+            border-color: rgba(55,3,184,0.1);
+        }
+
+        .bento-inner { flex: 1; }
+
+        .bento-card-white h3 {
+            font-size: 16px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            color: var(--escuro);
+        }
+
+        .bento-card-white p {
+            font-size: 13px;
+            color: #615a7a;
+            line-height: 1.5;
             margin: 0;
-            padding: 0;
         }
-        .container {
-            max-width: 800px;
-            margin: 50px auto;
-            padding: 40px;
-            background: #1a1a1a;
+
+        .bento-icon-small {
+            width: 36px;
+            height: 36px;
+            background: var(--branco);
+            color: var(--primaria);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .bento-mini-stats {
+            display: flex;
+            gap: 20px;
+            padding-left: 20px;
+            border-left: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .mini-stat { display: flex; flex-direction: column; }
+        .mini-stat strong { font-size: 20px; color: var(--primaria); line-height: 1; }
+        .mini-stat span { font-size: 10px; text-transform: uppercase; color: #837da1; }
+
+        /* Responsivo */
+        @media (max-width: 992px) {
+            .bento-grid-white { grid-template-columns: repeat(2, 1fr); }
+            .card-principal { grid-column: span 2; }
+        }
+
+        @media (max-width: 768px) {
+            .bento-grid-white { grid-template-columns: 1fr; }
+            .card-principal { grid-column: span 1; flex-direction: column; align-items: flex-start; gap: 20px; }
+            .bento-mini-stats { border-left: none; border-top: 1px solid rgba(0,0,0,0.1); padding: 15px 0 0; width: 100%; }
+        }
+
+
+
+
+
+
+        /* =========================================
+        NOSSOS SERVIÇOS (ESTILO MOCKUP DARK)
+        ========================================= */
+        .servicos-dark {
+            background-color: #050112;
+            padding: 50px 0;
+            position: relative;
+            overflow: hidden;
+            color: var(--branco);
+        }
+
+        /* Brilhos de fundo idênticos aos da imagem */
+        .servicos-dark::before {
+            content: '';
+            position: absolute;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(167,139,250,0.06) 0%, transparent 70%);
+            top: -200px; left: -200px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .servicos-dark::after {
+            content: '';
+            position: absolute;
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(254,102,3,0.04) 0%, transparent 70%);
+            bottom: -300px; right: -200px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .servicos-header {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .servicos-eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            color: #A78BFA; /* Roxo claro */
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .servicos-header h2 {
+            font-size: clamp(28px, 4vw, 36px);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.5px;
+        }
+
+        .servicos-grid {
+            display: grid;
+            /* Coloca os 5 cards lado a lado no computador */
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 50px;
+        }
+
+        .servico-card-dark {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-radius: 16px;
+            padding: 24px 20px;
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .servico-card-dark:hover {
+            background: rgba(255,255,255,0.04);
+            border-color: rgba(167,139,250,0.3);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px rgba(5,1,18,0.5);
+        }
+
+        .servico-icon-dark {
+            width: 44px;
+            height: 44px;
+            background: rgba(167,139,250,0.1);
+            color: #A78BFA;
             border-radius: 12px;
-            border: 1px solid #333;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            transition: 0.3s;
         }
-        h1 {
-            color: #fff;
-            font-size: 2rem;
+
+        .servico-card-dark:hover .servico-icon-dark {
+            background: #A78BFA;
+            color: #050112;
+        }
+
+        .servico-icon-dark svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        .servico-card-dark h3 {
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--branco);
+            margin-bottom: 10px;
+            line-height: 1.3;
+        }
+
+        .servico-card-dark p {
+            font-size: 12px;
+            color: #a09ab0;
+            line-height: 1.5;
+            margin-bottom: 24px;
+            flex: 1; /* Empurra a seta para baixo */
+        }
+
+        .servico-arrow {
+            margin-top: auto;
+            align-self: flex-end;
+            color: #413b58; /* Seta discreta */
+            transition: 0.3s;
+            display: flex;
+        }
+
+        .servico-card-dark:hover .servico-arrow {
+            color: var(--branco);
+            transform: translateX(4px);
+        }
+
+        .servicos-footer {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .btn-servicos {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            border-radius: 30px;
+            font-size: 13px;
+        }
+
+        /* Responsivo para organizar os 5 cards quando a tela diminui */
+        @media (max-width: 1200px) {
+            .servicos-grid { grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        }
+        @media (max-width: 768px) {
+            .servicos-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 576px) {
+            .servicos-grid { grid-template-columns: 1fr; }
+}
+
+
+
+
+    
+
+
+        /* =========================================
+        COMO TRABALHAMOS (ESTILO MOCKUP HORIZONTAL)
+        ========================================= */
+        #processo {
+            padding: 100px 0;
+            background-color: var(--branco); /* Fundo claro para contrastar com as secções escuras */
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .processo-layout {
+            display: flex;
+            gap: 60px;
+            align-items: flex-start;
+        }
+
+        /* Lado Esquerdo */
+        .processo-intro {
+            flex: 0 0 320px;
+        }
+
+        .processo-eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            color: var(--primaria);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 12px;
+        }
+
+        .processo-intro h2 {
+            font-size: 32px;
+            color: var(--escuro);
+            line-height: 1.2;
+            margin-bottom: 16px;
+        }
+
+        .processo-intro p {
+            font-size: 14px;
+            color: #615a7a;
+            margin-bottom: 24px;
+            line-height: 1.6;
+        }
+
+        .btn-link-laranja {
+            color: var(--destaque);
+            font-size: 13px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: 0.3s;
+            border: 1px solid rgba(254,102,3,0.3);
+            padding: 10px 20px;
+            border-radius: 24px;
+        }
+
+        .btn-link-laranja:hover {
+            background: rgba(254,102,3,0.08);
+            transform: translateX(4px);
+        }
+
+        /* Lado Direito: Os Passos */
+        .processo-steps-horizontal {
+            flex: 1;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            position: relative;
+            padding-top: 10px;
+        }
+
+        /* A linha tracejada que liga os ícones */
+        .processo-steps-horizontal::before {
+            content: '';
+            position: absolute;
+            top: 40px; /* Alinha exatamente a meio da altura do ícone */
+            left: 12%; 
+            right: 12%;
+            border-top: 2px dashed #D1C5F0;
+            z-index: 1;
+        }
+
+        .step-item {
+            position: relative;
+            z-index: 2; /* Fica por cima da linha tracejada */
+        }
+
+        /* Quadrado arredondado com o ícone grande */
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--branco);
+            border: 2px solid #E6D9FF;
+            color: var(--primaria);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+
+        .step-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        /* Bolinha roxa com o número */
+        .step-number {
+            width: 22px;
+            height: 22px;
+            background: var(--primaria);
+            color: var(--branco);
+            border-radius: 50%;
+            font-size: 11px;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .step-header h3 {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--escuro);
+            margin: 0;
+        }
+
+        .step-item p {
+            font-size: 13px;
+            color: #615a7a;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        /* Responsivo para não quebrar em telemóveis e tablets */
+        @media (max-width: 1024px) {
+            .processo-layout {
+                flex-direction: column;
+                gap: 40px;
+            }
+            .processo-intro {
+                flex: none;
+                max-width: 100%;
+            }
+            .processo-steps-horizontal::before {
+                display: none; /* Esconde a linha no mobile */
+            }
+            .processo-steps-horizontal {
+                grid-template-columns: repeat(2, 1fr); /* 2 em cima, 2 em baixo */
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .processo-steps-horizontal {
+                grid-template-columns: 1fr; /* 1 por linha no telemóvel */
+            }
+        }
+
+
+        /* =========================================
+        PROJETOS (COMPACTO)
+        ========================================= */
+        #projetos {
+            padding: 50px 0;
+            background: linear-gradient( #FE6603 0%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #projetos::after {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            background: rgba(255, 255, 255, 0.15);
+            filter: blur(120px);
+            bottom: -200px;
+            right: -100px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+        
+        .projetos-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .projetos-eyebrow {
+            font-size: 11px;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.9); /* Branco levemente transparente */
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        #projetos .section-title {
+            color: var(--branco); /* Título em branco para contrastar com o laranja */
+            text-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .projetos-header h2 { margin-bottom: 0; }
+        
+        .btn-ver-mais {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            color: var(--branco);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .btn-ver-mais:hover {
+            background: var(--branco);
+            color: var(--destaque);
+            border-color: var(--branco);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+
+        .projetos-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px; /* Menor distância entre cards */
+        }
+
+        .projeto-card {
+            background: var(--branco);
+            border-radius: 16px; /* Cantos menos arredondados */
+            overflow: hidden;
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.02);
+        }
+
+        .projeto-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 15px 30px rgba(55,3,184,0.08); 
+            border-color: rgba(55,3,184,0.1);
+        }
+
+        .projeto-thumb {
+            height: 140px; /* Altura da miniatura reduzida */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .projeto-thumb-1 { background: linear-gradient(135deg, #0D1117 0%, #161b22 100%); }
+        .projeto-thumb-2 { background: linear-gradient(135deg, #050112 0%, #20026b 100%); }
+        .projeto-thumb-3 { background: linear-gradient(135deg, #1a0a00 0%, #b34600 100%); }
+
+        .projeto-thumb-code {
+            padding: 15px;
+            color: var(--terminal-green);
+            font-size: 11px; /* Código menorzinho */
+            line-height: 1.6;
+            width: 100%;
+        }
+
+        .projeto-thumb-code .tc { color: var(--terminal-comment); }
+        .projeto-thumb-code .tk { color: var(--terminal-purple); }
+        .projeto-thumb-code .tf { color: var(--terminal-blue); }
+        .projeto-thumb-code .ts { color: var(--terminal-orange); }
+
+        .projeto-body { padding: 20px; flex: 1; display: flex; flex-direction: column; } /* Padding reduzido */
+        .projeto-body h3 { font-size: 18px; font-weight: 700; color: var(--escuro); margin-bottom: 8px; letter-spacing: -0.5px; }
+        .projeto-body p  { font-size: 13px; color: #615a7a; line-height: 1.5; flex: 1; }
+
+        .projeto-tags { display: flex; gap: 6px; flex-wrap: wrap; margin-top: 15px; }
+        .projeto-tag {
+            background: #F4F5F7;
+            color: #413b58;
+            padding: 4px 10px;
+            border-radius: 6px;
+            font-size: 10px;
+            font-weight: 600;
+            font-family: 'JetBrains Mono', monospace;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .projeto-footer {
+            padding: 15px 20px;
+            border-top: 1px solid rgba(0,0,0,0.04);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #FAFAFC;
+        }
+
+        .projeto-tipo {
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--primaria);
+            opacity: 0.8;
+        }
+
+        .projeto-link {
+            font-size: 12px;
+            color: var(--escuro);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            transition: 0.3s;
+        }
+
+        .projeto-link:hover { color: var(--destaque); transform: translateX(3px); }
+
+
+        /* =========================================
+        CTA FINAL DE IMPACTO (ESTILO MOCKUP)
+        ========================================= */
+        #contato { 
+            padding: 80px 0; 
+            background-color: var(--branco); 
+        }
+
+        .cta-final-box {
+            background: #050112; 
+            border-radius: 24px;
+            padding: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            color: var(--branco);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 40px rgba(5,1,18,0.1);
+        }
+
+        /* Efeito de luz ao fundo */
+        .cta-final-box::before {
+            content: '';
+            position: absolute;
+            width: 500px; height: 500px;
+            background: var(--primaria);
+            filter: blur(150px);
+            opacity: 0.15;
+            top: -100px; left: -100px;
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        /* --- LADO ESQUERDO --- */
+        .cta-left {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-eyebrow {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--destaque);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            display: block;
+            margin-bottom: 16px;
+        }
+
+        .cta-left h2 {
+            font-size: clamp(32px, 4vw, 42px);
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .destaque-roxo {
+            color: #A78BFA; /* Um roxo mais claro para dar destaque no fundo escuro */
+        }
+
+        .cta-left p {
+            font-size: 16px;
+            color: #a09ab0;
+            max-width: 450px;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .cta-actions-row {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .btn-outline-claro {
+            padding: 14px 28px;
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--branco);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 15px;
+            transition: 0.3s;
+        }
+
+        .btn-outline-claro:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .cta-left .btn-destaque {
+            padding: 15px 30px;
+            font-size: 15px;
+        }
+
+        /* --- LADO DIREITO --- */
+        .cta-right {
+            flex: 0 0 380px; /* Largura fixa para o cartão */
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-benefits-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+        }
+
+        .benefits-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 30px;
+        }
+
+        .benefits-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 14px;
+            color: #d9d2f6;
+            font-weight: 500;
+        }
+
+        .benefits-list svg {
+            width: 18px;
+            height: 18px;
+            color: #A78BFA; /* Corzinha do ícone */
+        }
+
+        .social-proof {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .avatar-group {
+            display: flex;
+        }
+
+        .avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 2px solid #050112;
+            margin-left: -10px;
+        }
+        .avatar:first-child { margin-left: 0; }
+        .bg-1 { background: linear-gradient(135deg, #FE6603, #ff9a57); }
+        .bg-2 { background: linear-gradient(135deg, #3703B8, #7a3df0); }
+        .bg-3 { background: linear-gradient(135deg, #A78BFA, #d2a8ff); }
+
+        .social-proof-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .social-proof-text strong {
+            font-size: 13px;
+            color: var(--branco);
+        }
+
+        .social-proof-text span {
+            font-size: 11px;
+            color: #837da1;
+        }
+
+        /* Responsivo para ecrãs menores */
+        @media (max-width: 900px) {
+            .cta-final-box {
+                flex-direction: column;
+                text-align: center;
+                padding: 40px 30px;
+            }
+            
+            .cta-left p {
+                margin: 0 auto 30px;
+            }
+            
+            .cta-actions-row {
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            
+            .cta-right {
+                flex: none;
+                width: 100%;
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            
+            .benefits-list li {
+                justify-content: center;
+            }
+            
+            .social-proof {
+                justify-content: center;
+            }
+        }
+
+
+
+
+
+
+
+
+
+        /* =========================================
+           RESPONSIVO
+        ========================================= */
+        @media (max-width: 992px) {
+            .bento-grid { grid-template-columns: 1fr; padding: 0 20px; }
+            .item-1, .item-7 { grid-column: span 1; }
+            .section-bento { padding: 60px 0; }
+            .projetos-grid { grid-template-columns: 1fr 1fr; }
+            .processo-steps { grid-template-columns: 1fr; gap: 40px; }
+            .processo-steps::before { display: none; }
+            .dashboard-grid { grid-template-columns: 1fr; }
+        }
+
+
+
+        @media (max-width: 768px) {
+            .contato-wrapper { flex-direction: column; padding: 40px 20px; border-radius: 24px; gap: 40px;}
+            .contato-info h2 { font-size: 32px; }
+            .contato-form-caixa { padding: 25px 20px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; padding-bottom: 40px; margin-bottom: 40px; }
+            .footer-col p { margin: 20px auto; }
+            .footer-col ul li a:hover, .social-links a:hover { transform: translateY(-3px); }
+            .footer-bottom { flex-direction: column; text-align: center; }
+            header .container { flex-direction: column; gap: 15px; text-align: center; }
+            nav ul { gap: 15px; justify-content: center; flex-wrap: wrap; }
+            nav ul li a { font-size: 14px; }
+            .hero { padding: 60px 0 60px; }
+            .hero .container { max-width: 100%; }
+            .hero-text { text-align: left; }
+            .hero h1 { font-size: 34px; }
+            .hero p { margin-left: 0; margin-right: 0; }
+            .hero-stats { flex-direction: column; gap: 20px; padding: 24px 20px; }
+            .hero-stat-divider { width: 80%; height: 1px; }
+            .hero-stat-item strong { font-size: 30px; }
+            .middle-wrapper { padding-top: 0; }
+            .projetos-grid { grid-template-columns: 1fr; }
+            .projetos-header { flex-direction: column; align-items: flex-start; gap: 16px; }
+            .impact-number { font-size: 36px; }
+            .footer-cta { padding-bottom: 40px; margin-bottom: 40px; }
+            .footer-cta h2 { font-size: 28px; line-height: 1.3; }
+            
+            .footer-grid { 
+                grid-template-columns: 1fr; 
+                gap: 40px; 
+                text-align: center; 
+            }
+            
+            .footer-col p { margin: 16px auto; }
+            
+            .footer-col ul li a:hover { transform: translateY(-3px); } /* Tira o slide lateral no mobile */
+            
+            .social-links ul { align-items: center; }
+            
+            .footer-bottom { 
+                flex-direction: column; 
+                text-align: center; 
+                gap: 12px; }
+
+        
+
+        }
+        
+        /* =========================================
+           ESTILOS EXCLUSIVOS: PÁGINA DE PRIVACIDADE
+           (Inspirado no NanoDash)
+        ========================================= */
+        .pg-privacidade {
+            background-color: #fcfcfc;
+            padding: 60px 20px;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container-privacidade {
+            width: 100%;
+            max-width: 800px;
+            background: var(--branco);
+            padding: 50px;
+            border-radius: 16px;
+            box-shadow: 0 4px 30px rgba(0,0,0,0.04);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .header-privacidade {
+            border-bottom: 2px solid var(--cinza-claro);
+            padding-bottom: 24px;
+            margin-bottom: 40px;
+        }
+
+        .header-privacidade h1 {
+            color: var(--escuro);
+            font-size: 32px;
+            margin-bottom: 8px;
+            line-height: 1.2;
+            letter-spacing: -1px;
+        }
+
+        .privacidade-version {
+            color: #615a7a;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 600;
+        }
+
+        .container-privacidade section {
+            margin-bottom: 35px;
+            scroll-margin-top: 0; /* Reseta o do site principal */
+        }
+
+        .container-privacidade h2 {
+            color: var(--primaria);
+            font-size: 22px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .container-privacidade h2::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 22px;
+            background-color: var(--destaque);
+            border-radius: 4px;
+        }
+
+        .container-privacidade p, 
+        .container-privacidade li {
+            font-size: 15px;
+            margin-bottom: 16px;
+            color: #413b58;
+            line-height: 1.7;
+        }
+
+        .container-privacidade ul {
+            padding-left: 24px;
+            margin-bottom: 24px;
+        }
+
+        .container-privacidade li {
             margin-bottom: 10px;
         }
-        .logo-box {
-            margin-bottom: 30px;
-            font-size: 1.5rem;
-            font-weight: bold;
+
+        .container-privacidade strong {
+            color: var(--escuro);
+            font-weight: 600;
         }
-        h2 {
-            color: #8257e5;
-            font-size: 1.3rem;
-            margin-top: 30px;
+
+        .contact-box-privacidade {
+            background-color: var(--cinza-claro);
+            border: 1px solid rgba(0,0,0,0.05);
+            padding: 24px;
+            border-radius: 12px;
+            margin: 25px 0;
         }
-        p {
-            margin-bottom: 15px;
+
+        .contact-box-privacidade p {
+            margin: 8px 0;
+            font-size: 15px;
         }
-        .back-link {
-            display: inline-block;
-            margin-top: 40px;
-            color: #ff8c00;
-            text-decoration: none;
-            font-weight: bold;
+        
+        .contact-box-privacidade p:last-child {
+            margin-bottom: 0;
         }
-        .back-link:hover {
-            text-decoration: underline;
-        }
-        footer {
+
+        .footer-privacidade {
+            margin-top: 60px;
+            font-size: 13px;
+            color: #837da1;
             text-align: center;
-            margin-top: 50px;
-            font-size: 0.8rem;
-            color: #666;
-            padding-bottom: 30px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            padding-top: 30px;
+            font-weight: 500;
+        }
+
+        /* Responsivo Privacidade */
+        @media (max-width: 600px) {
+            .pg-privacidade { padding: 20px 15px; }
+            .container-privacidade { padding: 30px 20px; }
+            .header-privacidade h1 { font-size: 26px; }
+            .container-privacidade h2 { font-size: 20px; }
         }
     </style>
 </head>
-<body>
+<body class="pg-privacidade">
 
-    <div class="container">
-        <div class="logo-box">
-            <span style="color: #8257e5;">Mov</span><span style="color: #ff8c00;">Code.</span>
+    <div class="container-privacidade">
+        
+        <header class="header-privacidade">
+            <h1>Política de Privacidade</h1>
+            <div class="privacidade-version">MovCode &bull; Vigente a partir de 01/05/2026</div>
+        </header>
+
+        <section>
+            <h2>1. Identificação e Contato</h2>
+            <p>A <strong>MovCode</strong> é uma agência de soluções digitais, estamos disponíveis para contato via e-mail e WhatsApp.</p>
+            <div class="contact-box-privacidade">
+                <p><strong>DPO (Encarregados de Dados):</strong> Vinicius Hallal e Kaique Mota</p>
+                <p><strong>E-mail para suporte e privacidade:</strong> contato@movcode.com.br</p>
+            </div>
+            <p><em>Última atualização: 01/05/2026</em></p>
+        </section>
+
+        <section>
+            <h2>2. Dados que Coletamos</h2>
+            <p>Para desenvolver seus projetos e manter seus sistemas rodando, coletamos:</p>
+            <ul>
+                <li><strong>Dados Cadastrais do Cliente:</strong> Nome, e-mail, CPF/CNPJ, telefone e endereço (para fins contratuais e emissão de notas fiscais).</li>
+                <li><strong>Dados dos Seus Usuários:</strong> Informações que você ou seus clientes inserem nos sistemas que desenvolvemos (vendas, cadastros, arquivos).</li>
+                <li><strong>Logs Técnicos:</strong> Endereço IP, tipo de navegador e timestamps de acesso para garantir a segurança dos sistemas e facilitar o suporte técnico.</li>
+                <li><strong>Comunicação:</strong> Histórico de conversas via WhatsApp ou e-mail relacionadas ao suporte e escopo dos projetos.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>3. Finalidade do Tratamento</h2>
+            <p>Os dados são utilizados exclusivamente para:</p>
+            <ul>
+                <li><strong>Execução do Contrato:</strong> Desenvolver o código, realizar o deploy e manter o seu site/sistema funcional.</li>
+                <li><strong>Suporte Técnico:</strong> Resolver bugs e realizar manutenções solicitadas.</li>
+                <li><strong>Segurança:</strong> Prevenir acessos não autorizados e garantir a integridade do banco de dados.</li>
+                <li><strong>Faturamento:</strong> Processar pagamentos recorrentes e emitir documentos fiscais.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>4. Compartilhamento (Sub-processadores)</h2>
+            <p>Como agência, utilizamos infraestruturas de ponta para hospedar e processar dados. Seus dados podem passar por:</p>
+            <ul>
+                <li><strong>Hospedagem (Cloud):</strong> Github pages (armazenamento e processamento).</li>
+                <li><strong>Banco de Dados:</strong> MySQL (armazenamento de informações estruturadas).</li>
+                <li><strong>Pagamentos:</strong> Asaas para processar suas mensalidades.</li>
+                <li><strong>Comunicação:</strong> WhatsApp (via Evolution API ou oficial) e Resend/SendGrid para envios de e-mails do sistema.</li>
+                <li><strong>Inteligência Artificial:</strong> Caso seu sistema use IA, utilizamos a OpenAI (com configuração de não-treinamento de modelos).</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>5. Retenção de Dados</h2>
+            <ul>
+                <li><strong>Sistemas Ativos:</strong> Os dados são mantidos enquanto o contrato de manutenção/hospedagem estiver vigente.</li>
+                <li><strong>Após o Cancelamento:</strong> Conforme nossos Termos de Uso, os dados de uso do sistema ficam disponíveis para exportação por <strong>30 dias</strong>. Após esse período, realizamos a exclusão definitiva das bases de produção.</li>
+                <li><strong>Obrigação Legal:</strong> Dados fiscais e contratuais são preservados por <strong>5 anos</strong> para cumprimento de normas da Receita Federal.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>6. Seus Direitos (LGPD)</h2>
+            <p>Você, como titular, pode solicitar a qualquer momento:</p>
+            <ul>
+                <li>Confirmação e acesso aos dados que tratamos.</li>
+                <li>Correção de informações incompletas ou desatualizadas.</li>
+                <li>Exclusão definitiva de dados (respeitados os prazos de obrigações fiscais).</li>
+                <li>Portabilidade dos dados para outra plataforma.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>7. Segurança da Informação</h2>
+            <p>Adotamos práticas rigorosas de desenvolvimento:</p>
+            <ul>
+                <li>Uso de criptografia TLS (HTTPS) em todos os acessos.</li>
+                <li>Isolamento de bancos de dados (Row-Level Security) para que um cliente nunca acesse dados de outro.</li>
+                <li>Armazenamento de senhas com hash seguro (bcrypt).</li>
+                <li>Monitoramento constante de logs para identificação de tentativas de invasão.</li>
+            </ul>
+        </section>
+
+        <section>
+            <h2>8. Alterações nesta Política</h2>
+            <p>Sempre que houver uma mudança significativa (como a adição de um novo sub-processador de dados), você será notificado por e-mail ou através de um aviso no painel administrativo do seu sistema.</p>
+        </section>
+
+        <section>
+            <h2>9. Foro</h2>
+            <p>Fica eleito o foro da Comarca de <strong>Ribeirão Preto/SP</strong> para dirimir questões sobre esta Política.</p>
+        </section>
+
+        <div class="footer-privacidade">
+            &copy; <span id="year">2026</span> MovCode. Todos os direitos reservados.
         </div>
-
-        <h1>Política de Privacidade</h1>
-        <p>A sua privacidade é importante para nós. É política da <strong>MovCode</strong> respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site MovCode e outros sites que possuímos e operamos.</p>
-
-        <h2>1. Coleta de Informações</h2>
-        <p>Solicitamos informações pessoais apenas quando realmente precisamos delas para lhe fornecer um serviço. Fazemo-lo por meios justos e legais, com o seu conhecimento e consentimento.</p>
-
-        <h2>2. Uso de Dados</h2>
-        <p>Não compartilhamos informações de identificação pessoal publicamente ou com terceiros, exceto quando exigido por lei. Os dados coletados servem exclusivamente para o contato comercial e melhoria da experiência do usuário.</p>
-
-        <h2>3. Segurança</h2>
-        <p>Protegemos os dados armazenados dentro de meios comercialmente aceitáveis ​​para evitar perdas e roubos, bem como acesso, divulgação, cópia, uso ou modificação não autorizados.</p>
-
-        <h2>4. Cookies</h2>
-        <p>Utilizamos cookies para entender como você interage com nosso site, permitindo melhorias constantes na performance e usabilidade das nossas soluções digitais.</p>
-
-        <h2>5. Compromisso do Usuário</h2>
-        <p>O usuário se compromete a fazer uso adequado dos conteúdos e da informação que a MovCode oferece no site e com caráter enunciativo, mas não limitativo.</p>
-
-        <a href="index.html" class="back-link">← Voltar para o site</a>
+        
     </div>
 
-    <footer>
-        &copy; 2026 MovCode — Todos os direitos reservados.
-    </footer>
-
+    <script>
+        // Atualiza o ano do copyright automaticamente assim que a página carrega
+        document.addEventListener('DOMContentLoaded', () => {
+            const yearSpan = document.getElementById('year');
+            
+            if (yearSpan) {
+                yearSpan.textContent = new Date().getFullYear();
+            }
+            
+            console.log("Política de Privacidade da MovCode carregada com sucesso.");
+        });
+    </script>
 </body>
 </html>
