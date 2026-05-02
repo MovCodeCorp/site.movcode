@@ -306,3 +306,17 @@
         }
     });
 })();
+
+// Adiciona o evento para o botão de voltar para a home assim que a página carregar
+document.addEventListener('DOMContentLoaded', () => {
+    const botaoVoltar = document.getElementById('btn-voltar-home');
+    
+    if (botaoVoltar) {
+        botaoVoltar.addEventListener('click', (e) => {
+            e.preventDefault(); // Evita comportamento padrão de recarregar a página
+            
+            // Redireciona para a home (ajuste o caminho se necessário, ex: '../index.html' ou '/')
+            window.location.href = 'index.html';
+        });
+    }
+});
