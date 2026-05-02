@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serviços | MovCode</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f0f0f;
+            color: #ccc;
+            margin: 0;
+            padding: 0;
+        }
+        .header-servicos {
+            padding: 80px 20px;
+            text-align: center;
+            background: linear-gradient(180deg, #1a1a1a 0%, #0f0f0f 100%);
+        }
+        .logo-box {
+            font-size: 1.8rem;
+            font-weight: bold;
+            margin-bottom: 20px;
+            display: block;
+            text-decoration: none;
+        }
+        h1 {
+            color: #fff;
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            color: #8257e5;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+        }
+        .servico-card {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            padding: 40px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .servico-card:hover {
+            border-color: #8257e5;
+            background: #1e1e1e;
+            transform: translateY(-5px);
+        }
+        .icon-box {
+            width: 60px;
+            height: 60px;
+            background: rgba(130, 87, 229, 0.1);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 25px;
+            color: #8257e5;
+        }
+        .servico-card h2 {
+            color: #fff;
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+        }
+        .servico-card p {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+        .features-list {
+            list-style: none;
+            padding: 0;
+            margin-bottom: 30px;
+        }
+        .features-list li {
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #999;
+        }
+        .features-list li::before {
+            content: "→";
+            color: #ff8c00;
+            font-weight: bold;
+        }
+        .btn-saiba-mais {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border-bottom: 2px solid #ff8c00;
+            align-self: flex-start;
+            padding-bottom: 2px;
+        }
+        .cta-final {
+            text-align: center;
+            padding: 100px 20px;
+        }
+        .btn-principal {
+            background: #8257e5;
+            color: #fff;
+            padding: 18px 40px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            transition: background 0.3s;
+        }
+        .btn-principal:hover {
+            background: #6a45c7;
+        }
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: 1px solid #1a1a1a;
+            color: #555;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header-servicos">
+        <a href="index.html" class="logo-box">
+            <span style="color: #8257e5;">Mov</span><span style="color: #ff8c00;">Code.</span>
+        </a>
+        <span class="subtitle">O que entregamos</span>
+        <h1>Tecnologia sob medida</h1>
+    </header>
+
+    <div class="container">
+        
+        <!-- Serviço 1 -->
+        <div class="servico-card">
+            <div>
+                <div class="icon-box">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                </div>
+                <h2>Sistemas Web (SaaS)</h2>
+                <p>Plataformas robustas e escaláveis acessíveis de qualquer lugar. Focamos em performance e segurança de dados.</p>
+                <ul class="features-list">
+                    <li>Dashboards Administrativos</li>
+                    <li>Gestão de Usuários e Níveis</li>
+                    <li>APIs de Integração</li>
+                </ul>
+            </div>
+            <a href="index.html#contato" class="btn-saiba-mais">Solicitar Orçamento</a>
+        </div>
+
+        <!-- Serviço 2 -->
+        <div class="servico-card">
+            <div>
+                <div class="icon-box">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                </div>
+                <h2>Automação de Processos</h2>
+                <p>Eliminamos tarefas manuais e repetitivas, conectando ferramentas e criando robôs de automação inteligentes.</p>
+                <ul class="features-list">
+                    <li>Integração de Planilhas e ERPs</li>
+                    <li>Automação de Relatórios</li>
+                    <li>Bots de atendimento e fluxo</li>
+                </ul>
+            </div>
+            <a href="index.html#contato" class="btn-saiba-mais">Solicitar Orçamento</a>
+        </div>
+
+        <!-- Serviço 3 -->
+        <div class="servico-card">
+            <div>
+                <div class="icon-box">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
+                </div>
+                <h2>Sites de Alta Conversão</h2>
+                <p>Desenvolvimento de Landing Pages e sites institucionais otimizados para SEO e velocidade máxima de carregamento.</p>
+                <ul class="features-list">
+                    <li>Design Responsivo (Mobile First)</li>
+                    <li>SEO Técnico Avançado</li>
+                    <li>Foco em Captura de Leads</li>
+                </ul>
+            </div>
+            <a href="index.html#contato" class="btn-saiba-mais">Solicitar Orçamento</a>
+        </div>
+
+    </div>
+
+    <div class="cta-final">
+        <h2 style="color: #fff; margin-bottom: 30px;">Precisa de algo específico?</h2>
+        <a href="index.html#contato" class="btn-principal">Vamos conversar agora</a>
+    </div>
+
+    <footer>
+        &copy; 2026 MovCode. Soluções que movem o seu negócio.
+    </footer>
+
+</body>
+</html>
