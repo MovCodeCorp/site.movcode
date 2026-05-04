@@ -39,11 +39,16 @@
 <body>
 
     <header class="site-header">
-        <div class="container">
+        <div class="container header-container">
             <a href="#inicio" class="logo">
-                <span>Mov</span><span style="color: #6a11cb;">Code.</span>
+                <span>MovCode</span><span class="logo-dot">.</span>
             </a>
-            <nav aria-label="Navegação principal">
+            <button class="nav-toggle" type="button" aria-label="Abrir menu" aria-controls="main-navigation" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <nav id="main-navigation" aria-label="Navegação principal">
                 <ul>
                     <li><a href="#inicio">Início</a></li>
                     <li><a href="#sobre">Sobre nós</a></li>
@@ -105,16 +110,36 @@
         </div>
 
             <div class="hero-visual">
-                <div class="tech-orbit">
-                    <div class="orbit-ring ring-1"></div>
-                    <div class="orbit-ring ring-2"></div>
-                    <div class="orbit-ring ring-3"></div>
-                    
-                    <div class="orbit-core">
-                        <div class="core-pulse"></div>
-                        <div class="core-solid">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
+                <div class="hero-dashboard" aria-hidden="true">
+                    <div class="dashboard-topbar">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <div class="dashboard-screen">
+                        <div class="dashboard-main">
+                            <div class="dashboard-line line-wide"></div>
+                            <div class="dashboard-line"></div>
+                            <div class="dashboard-progress">
+                                <span></span>
+                            </div>
                         </div>
+                        <div class="dashboard-side">
+                            <div class="mini-panel panel-orange"></div>
+                            <div class="mini-panel panel-purple"></div>
+                        </div>
+                    </div>
+                    <div class="dashboard-terminal">
+                        <span>&gt; build: ready</span>
+                        <span>&gt; deploy: online</span>
+                    </div>
+                    <div class="floating-card floating-card-one">
+                        <strong>+38%</strong>
+                        <span>performance</span>
+                    </div>
+                    <div class="floating-card floating-card-two">
+                        <strong>24h</strong>
+                        <span>ativo</span>
                     </div>
                 </div>
             </div>
@@ -236,59 +261,59 @@
 
         <div class="servicos-grid escondido">
             
-            <div class="servico-card-dark">
+            <div class="servico-card-dark" data-service-detail="Ideal para empresas que precisam sair de planilhas soltas e processos manuais. Criamos sistemas internos, dashboards, portais administrativos e fluxos digitais sob medida para a rotina real da equipe." data-service-tags="Sistemas internos,Dashboards,Gestão operacional">
                 <div class="servico-icon-dark">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
                 </div>
                 <h3>Sistemas sob medida</h3>
                 <p>Desenvolvemos sistemas completos para centralizar informações, processos e pessoas.</p>
-                <div class="servico-arrow">
+                <button type="button" class="servico-arrow" aria-label="Ver detalhes de Sistemas sob medida">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </div>
+                </button>
             </div>
 
-            <div class="servico-card-dark">
+            <div class="servico-card-dark" data-service-detail="Construímos automações para eliminar tarefas repetitivas, organizar dados entre ferramentas e deixar operações recorrentes mais rápidas. O foco é reduzir erro manual e liberar tempo da equipe." data-service-tags="Rotinas automáticas,Integrações,Produtividade">
                 <div class="servico-icon-dark">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
                 </div>
                 <h3>Automações</h3>
                 <p>Automatizamos tarefas repetitivas e integrações para ganhar tempo, reduzir erros e aumentar a eficiência.</p>
-                <div class="servico-arrow">
+                <button type="button" class="servico-arrow" aria-label="Ver detalhes de Automações">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </div>
+                </button>
             </div>
 
-            <div class="servico-card-dark">
+            <div class="servico-card-dark" data-service-detail="Desenvolvemos sites e portais com estrutura moderna, boa performance e foco em conversão. Cuidamos da experiência, organização das páginas e base técnica para o projeto crescer com consistência." data-service-tags="Sites institucionais,Portais,Performance">
                 <div class="servico-icon-dark">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>
                 </div>
                 <h3>Sites e Portais</h3>
                 <p>Sites institucionais e portais modernos, rápidos e otimizados para gerar resultados.</p>
-                <div class="servico-arrow">
+                <button type="button" class="servico-arrow" aria-label="Ver detalhes de Sites e Portais">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </div>
+                </button>
             </div>
 
-            <div class="servico-card-dark">
+            <div class="servico-card-dark" data-service-detail="Conectamos sistemas, ERPs, CRMs, formulários, bancos de dados e APIs para que as informações circulem sem retrabalho. A entrega pode envolver sincronização, tratamento de dados e monitoramento." data-service-tags="APIs,ERPs e CRMs,Sincronização">
                 <div class="servico-icon-dark">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
                 </div>
                 <h3>Integrações</h3>
                 <p>Conectamos ferramentas e sistemas que sua empresa já usa para tudo funcionar em conjunto.</p>
-                <div class="servico-arrow">
+                <button type="button" class="servico-arrow" aria-label="Ver detalhes de Integrações">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </div>
+                </button>
             </div>
 
-            <div class="servico-card-dark">
+            <div class="servico-card-dark" data-service-detail="Mapeamos gargalos, fluxos e decisões operacionais antes de propor tecnologia. A consultoria ajuda a transformar uma ideia ou dor interna em um plano prático de melhoria e execução." data-service-tags="Mapeamento,Arquitetura,Melhoria contínua">
                 <div class="servico-icon-dark">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="20" x2="12" y2="10"></line><line x1="18" y1="20" x2="18" y2="4"></line><line x1="6" y1="20" x2="6" y2="16"></line></svg>
                 </div>
                 <h3>Consultoria e Processos</h3>
                 <p>Mapeamos e otimizamos processos para tornar sua operação mais eficiente e escalável.</p>
-                <div class="servico-arrow">
+                <button type="button" class="servico-arrow" aria-label="Ver detalhes de Consultoria e Processos">
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-                </div>
+                </button>
             </div>
 
         </div>
@@ -302,6 +327,25 @@
 
     </div>
 </section>
+
+    <div class="project-modal service-modal" id="serviceModal" aria-hidden="true">
+        <div class="project-modal__overlay" data-service-close></div>
+        <div class="project-modal__dialog service-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="serviceModalTitle">
+            <button type="button" class="project-modal__close" aria-label="Fechar detalhes" data-service-close>×</button>
+            <div class="service-modal__visual" aria-hidden="true">
+                <div class="service-modal__icon" id="serviceModalIcon"></div>
+                <span>Movii</span>
+            </div>
+            <div class="project-modal__content service-modal__content">
+                <span class="project-modal__type">Serviço</span>
+                <h3 id="serviceModalTitle"></h3>
+                <p id="serviceModalSummary"></p>
+                <p id="serviceModalDetail"></p>
+                <div class="project-modal__tags" id="serviceModalTags"></div>
+                <a href="#contato" class="btn-destaque service-modal__cta" data-service-close>Falar sobre esse serviço</a>
+            </div>
+        </div>
+    </div>
 
     <section id="processo">
         <div class="container">
@@ -382,7 +426,8 @@
 
                 <div class="projeto-card">
                     <div class="projeto-thumb projeto-thumb-1">
-                        <div class="projeto-thumb-code">
+                        <div class="projeto-photo-slot">
+                            <img src="assets/images/projects/project-cover-default.jpg" alt="Prévia do sistema LabSystem" loading="lazy">
 <span class="tc">// LabSystem — rotina de testes</span>
 <span class="tk">interface</span> <span class="tf">TesteTinta</span> {
   id: <span class="ts">string</span>;
@@ -400,13 +445,14 @@
                     </div>
                     <div class="projeto-footer">
                         <span class="projeto-tipo">Sistema Web</span>
-                        <a href="https://github.com/movcode-solutions" target="_blank" class="projeto-link">Detalhes →</a>
+                        <a href="#projectModal" class="projeto-link" data-project-description="O LabSystem centraliza rotinas laboratoriais e transforma etapas de controle industrial em um fluxo mais claro para a equipe. A proposta é reduzir falhas manuais, organizar históricos de testes, facilitar consultas rápidas e dar mais previsibilidade para decisões operacionais. O sistema foi pensado para empresas que precisam acompanhar dados técnicos com precisão, segurança e uma interface fácil de usar no dia a dia." data-project-images="assets/images/projects/project-cover-default.jpg,assets/images/projects/project-cover-default.jpg,assets/images/projects/project-cover-default.jpg">Detalhes →</a>
                     </div>
                 </div>
 
                 <div class="projeto-card">
                     <div class="projeto-thumb projeto-thumb-2">
-                        <div class="projeto-thumb-code">
+                        <div class="projeto-photo-slot">
+                            <img src="assets/images/projects/project-cover-default.jpg" alt="Prévia do sistema de automação desktop" loading="lazy">
 <span class="tc"># sistema_interno.py</span>
 <span class="tk">import</span> <span class="tf">customtkinter</span>
 
@@ -424,13 +470,14 @@
                     </div>
                     <div class="projeto-footer">
                         <span class="projeto-tipo">Software Local</span>
-                        <a href="https://github.com/movcode-solutions" target="_blank" class="projeto-link">Detalhes →</a>
+                        <a href="#projectModal" class="projeto-link" data-project-description="A automação desktop foi criada para substituir tarefas repetitivas por uma operação local mais rápida, consistente e simples. O foco é entregar uma ferramenta leve, com interface objetiva, que ajude a equipe a executar processos internos sem depender de planilhas complexas ou rotinas manuais. Ideal para empresas que precisam de produtividade sem perder controle sobre a operação." data-project-images="assets/images/projects/project-cover-default.jpg,assets/images/projects/project-cover-default.jpg,assets/images/projects/project-cover-default.jpg">Detalhes →</a>
                     </div>
                 </div>
 
                 <div class="projeto-card">
                     <div class="projeto-thumb projeto-thumb-3">
-                        <div class="projeto-thumb-code">
+                        <div class="projeto-photo-slot">
+                            <img src="assets/images/projects/project-cover-default.jpg" alt="Prévia de arquitetura de sistema" loading="lazy">
 <span class="tc">/* Modelagem */</span>
 [Elicitação] -> [Requisitos]
 [Arquitetura] -> [Classes]
@@ -446,7 +493,7 @@
                     </div>
                     <div class="projeto-footer">
                         <span class="projeto-tipo">Modelagem</span>
-                        <a href="https://github.com/movcode-solutions" target="_blank" class="projeto-link">Detalhes →</a>
+                        <a href="#projectModal" class="projeto-link" data-project-description="A etapa de arquitetura organiza a base técnica antes do desenvolvimento começar. Mapeamos requisitos, fluxos, entidades, telas e decisões estruturais para que o sistema nasça com direção clara e menos retrabalho. Esse tipo de projeto é indicado quando a ideia já existe, mas precisa virar um plano técnico confiável, bem documentado e pronto para execução." data-project-images="assets/images/projects/project-cover-default.jpg,assets/images/projects/project-cover-default.jpg,assets/images/projects/project-cover-default.jpg">Detalhes →</a>
                     </div>
                 </div>
 
@@ -454,12 +501,28 @@
         </div>
     </section>
 
+    <div class="project-modal" id="projectModal" aria-hidden="true">
+        <div class="project-modal__overlay" data-project-close></div>
+        <div class="project-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="projectModalTitle">
+            <button type="button" class="project-modal__close" aria-label="Fechar detalhes" data-project-close>×</button>
+            <div class="project-modal__gallery">
+                <img id="projectModalImage" src="assets/images/projects/project-cover-default.jpg" alt="">
+            </div>
+            <div class="project-modal__content">
+                <span class="project-modal__type" id="projectModalType"></span>
+                <h3 id="projectModalTitle"></h3>
+                <p id="projectModalDescription"></p>
+                <div class="project-modal__tags" id="projectModalTags"></div>
+                <div class="project-modal__thumbs" id="projectModalThumbs"></div>
+            </div>
+        </div>
+    </div>
+
 
 
     <section id="contato">
         <div class="container">
             <div class="cta-final-box escondido">
-                
                 <div class="cta-left">
                     <span class="cta-eyebrow">Vamos conversar?</span>
                     <h2>Pronto para <span class="destaque-roxo">transformar</span><br>sua operação?</h2>
@@ -468,9 +531,6 @@
                     <div class="cta-actions-row">
                         <a href="https://wa.me/5516000000000" target="_blank" class="btn-destaque">
                             Fale com a gente
-                        </a>
-                        <a href="#projetos" class="btn-outline-claro">
-                            Ver projetos
                         </a>
                     </div>
                 </div>
@@ -518,6 +578,8 @@
     <a href="https://wa.me/5516000000000" target="_blank" rel="noopener noreferrer" class="whatsapp-btn" aria-label="Falar pelo WhatsApp">
         <img src="assets/images/icons/logo-whatsapp.png" alt="WhatsApp" loading="lazy" class="whatsapp-btn__icon">
     </a>
+
+    </main>
 
 
     <footer class="footer-compacto">
