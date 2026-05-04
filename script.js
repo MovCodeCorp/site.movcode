@@ -385,8 +385,26 @@ window.MOVII_CONFIG = Object.freeze({
     }
 
     let lastFocusedElement = null;
+    let projectImageTimer = null;
+
+    function stopProjectSlideshow() {
+        if (projectImageTimer) {
+            clearInterval(projectImageTimer);
+            projectImageTimer = null;
+        }
+    }
+
+    function changeProjectImage(image) {
+        imageElement.classList.add('is-changing');
+
+        setTimeout(() => {
+            imageElement.src = image;
+            imageElement.classList.remove('is-changing');
+        }, 180);
+    }
 
     function closeProjectModal() {
+        stopProjectSlideshow();
         modal.classList.remove('is-open');
         modal.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('project-modal-open');
@@ -409,36 +427,28 @@ window.MOVII_CONFIG = Object.freeze({
             .split(',')
             .map((image) => image.trim())
             .filter(Boolean);
+        const galleryImages = images.length ? images : [fallbackImage];
+        let currentImageIndex = 0;
 
         titleElement.textContent = title;
         typeElement.textContent = type;
         descriptionElement.textContent = description;
-        imageElement.src = images[0] || fallbackImage;
+        imageElement.src = galleryImages[0];
         imageElement.alt = `Prévia do projeto ${title}`;
         tagsElement.replaceChildren(...tags.map((tag) => {
             const tagElement = document.createElement('span');
             tagElement.textContent = tag;
             return tagElement;
         }));
-        thumbsElement.replaceChildren(...images.map((image, index) => {
-            const button = document.createElement('button');
-            button.type = 'button';
-            button.className = index === 0 ? 'is-active' : '';
-            button.setAttribute('aria-label', `Ver imagem ${index + 1} de ${title}`);
+        thumbsElement.replaceChildren();
+        stopProjectSlideshow();
 
-            const thumb = document.createElement('img');
-            thumb.src = image;
-            thumb.alt = '';
-
-            button.appendChild(thumb);
-            button.addEventListener('click', () => {
-                imageElement.src = image;
-                thumbsElement.querySelectorAll('button').forEach((thumbButton) => thumbButton.classList.remove('is-active'));
-                button.classList.add('is-active');
-            });
-
-            return button;
-        }));
+        if (galleryImages.length > 1) {
+            projectImageTimer = setInterval(() => {
+                currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+                changeProjectImage(galleryImages[currentImageIndex]);
+            }, 3200);
+        }
 
         lastFocusedElement = trigger;
         modal.classList.add('is-open');
