@@ -70,14 +70,15 @@ header .container,
     align-items: baseline;
     white-space: nowrap;
 }
-.logo span:first-child { color: #050112; }
-.logo .logo-dot { color: var(--destaque); }
+.logo .logo-mov,
+.logo .logo-dot { color: var(--escuro); }
+.logo .logo-code { color: var(--destaque); }
 
 nav ul { display: flex; align-items: center; list-style: none; gap: 6px; }
 nav ul li a {
     position: relative;
     text-decoration: none;
-    color: #2a2342;
+    color: var(--escuro);
     font-weight: 600;
     font-size: 14px;
     transition: color 0.25s ease;
@@ -118,7 +119,7 @@ nav ul li a:focus-visible::after {
     border: 0;
     border-radius: 0;
     background: transparent;
-    color: var(--primaria);
+    color: var(--escuro);
     cursor: pointer;
     align-items: center;
     justify-content: center;
@@ -142,8 +143,9 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
 ========================================= */
 .top-wrapper {
     background:
-        radial-gradient(circle at 18% 24%, rgba(167,139,250,0.28) 0%, transparent 34%),
-        linear-gradient(135deg, #12062F 0%, #3703B8 50%, #050112 100%);
+        radial-gradient(circle at 18% 18%, rgba(167,139,250,0.08) 0%, transparent 34%),
+        radial-gradient(circle at 84% 72%, rgba(254,102,3,0.05) 0%, transparent 38%),
+        #050112;
     display: flex;
     flex-direction: column;
     position: relative;
@@ -154,7 +156,7 @@ body.nav-open .nav-toggle span:nth-child(3) { transform: translateY(-7px) rotate
     width: 500px; height: 500px;
     background: #A78BFA;
     filter: blur(150px);
-    opacity: 0.2;
+    opacity: 0.08;
     top: -100px; right: -100px;
     border-radius: 50%;
     pointer-events: none;
